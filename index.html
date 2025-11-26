@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-Br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Lista de Tarefas</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Lista de Tarefas</h1>
+            <p>Adicione sua tarefa:</p>
+            
+            <input type="text" id="novaTarefa" placeholder="Ex: Comprar leite">
+            
+            <button onclick="AdicionarTarefa()">Adicionar Tarefa</button>
+            
+            <p id="mensagem"></p>
+            
+            <ul id="listaDeTarefas">
+            </ul>
+        </div>
+
+        <script>
+            function AdicionarTarefa() {
+                const input = document.getElementById('novaTarefa');
+                const textoTarefa = input.value.trim();
+
+                if (textoTarefa !== "") {
+                    const li = document.createElement('li');
+                    li.textContent = textoTarefa;
+
+                    li.addEventListener('click', function() {
+                        li.classList.toggle('concluida');
+                    });
+
+                    document.getElementById('listaDeTarefas').appendChild(li);
+
+                    input.value = "";
+                    
+                    document.getElementById('mensagem').textContent = "";
+                } else {
+                    const mensagem = document.getElementById('mensagem');
+                    mensagem.textContent = "Por favor, digite uma tarefa!";
+                    setTimeout(() => {
+                        mensagem.textContent = "";
+                    }, 3000);
+                }
+            }
+        </script>
+    </body>
+</html>
